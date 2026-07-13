@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My LIbrary</title>
+    <title>My Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,41 +23,29 @@
         </svg>
         My Library
       </h1>
-      <button type="button" class="add-book">Add book</button>
+      <button type="button" id="add-book">Add book</button>
     </div>
-    <div class="books">
-      <div class="book">
-        <h2>Title</h2>
-        <div class="book-details">
-          <p><strong>Author:</strong> <span>Example</span></p>
-          <p><strong>Pages:</strong> <span>Example</span></p>
-          <p><strong>Read:</strong> <span>Example</span></p>
+    <div class="books"></div>
+    <dialog id="add-book-dialog">
+      <form action="" method="post">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
         </div>
-      </div>
-      <div class="book">
-        <h2>Title</h2>
-        <p>Author: <span>Example</span></p>
-        <p>Pages: <span>Example</span></p>
-        <p>Read: <span>Example</span></p>
-      </div>
-      <div class="book">
-        <h2>Title</h2>
-        <p>Author: <span>Example</span></p>
-        <p>Pages: <span>Example</span></p>
-        <p>Read: <span>Example</span></p>
-      </div>
-      <div class="book">
-        <h2>Title</h2>
-        <p>Author: <span>Example</span></p>
-        <p>Pages: <span>Example</span></p>
-        <p>Read: <span>Example</span></p>
-      </div>
-      <div class="book">
-        <h2>Title</h2>
-        <p>Author: <span>Example</span></p>
-        <p>Pages: <span>Example</span></p>
-        <p>Read: <span>Example</span></p>
-      </div>
-    </div>
+        <div>
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" />
+        </div>
+        <div>
+          <label for="pages">Pages</label>
+          <input type="number" id="pages" name="pages" />
+        </div>
+        <div>
+          <input type="checkbox" id="read" name="read" value="read" />
+          <label for="read">Have you read this book yet?</label>
+        </div>
+        <button type="button" id="close-modal">Cancel</button>
+      </form>
+    </dialog>
   </body>
 </html>
