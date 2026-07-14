@@ -7,6 +7,15 @@ const bookTest3 = new Book("The Stranger", "Albert Camus", 173, false);
 
 myLibrary.push(bookTest, bookTest2, bookTest3);
 
+// Query Selectors
+const books = document.querySelector(".books");
+
+const form = document.querySelector("form");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const readInput = document.querySelector("#read");
+
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("#add-book");
 const closeButton = document.querySelector("#close-modal");
@@ -67,9 +76,17 @@ function createBookDisplay(book) {
   return card;
 }
 
-function displayBooks() {
-  const books = document.querySelector(".books");
+function getInputData() {
+  return {
+    title: titleInput.value,
+    author: authorInput.value,
+    pages: Number(pagesInput.value),
+    read: readInput.checked,
+  };
+}
 
+function displayBooks() {
+  books.replaceChildren();
   for (const book of myLibrary) {
     const card = createBookDisplay(book);
     books.append(card);
@@ -81,6 +98,19 @@ showButton.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const { title, author, pages, read } = getInputData();
+
+  addBookToLibrary(title, author, pages, read);
+
+  displayBooks();
+
+  form.reset();
   dialog.close();
 });
 
