@@ -86,6 +86,7 @@ function createBookDisplay(book) {
   );
 
   const cardButtons = document.createElement("div");
+  cardButtons.classList.add("book-buttons");
 
   const removeButton = document.createElement("button");
   removeButton.classList.add("remove-btn");
