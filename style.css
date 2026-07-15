@@ -2,7 +2,7 @@
   --text: #0d0713;
   --background: #faf7fd;
   --primary: #862dd9;
-  --secondary: #b575f1;
+  --secondary: #ddc1f7;
   --accent: #a750fa;
 }
 
@@ -64,9 +64,10 @@ button {
 
 .book {
   padding: 2em;
-  border: 1px solid black;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background-color: var(--secondary);
   border-radius: 10px;
+  aspect-ratio: 1 / 1;
 }
 
 form > div {
@@ -81,5 +82,4 @@ dialog::backdrop {
 dialog {
   margin: auto;
   padding: 2em;
-  font-size: 1.5rem;
 }

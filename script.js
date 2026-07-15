@@ -1,12 +1,5 @@
 const myLibrary = [];
 
-// test code
-const bookTest = new Book("Gideon The Ninth", "Tamsyn Muir", 456, true);
-const bookTest2 = new Book("The Stranger", "Albert Camus", 173, false);
-const bookTest3 = new Book("The Stranger", "Albert Camus", 173, false);
-
-myLibrary.push(bookTest, bookTest2, bookTest3);
-
 // Query Selectors
 const books = document.querySelector(".books");
 
@@ -44,6 +37,14 @@ function addBookToLibrary(title, author, pages, read) {
   return newBook;
 }
 
+function removeBookFromLibrary(bookId) {
+  const index = myLibrary.findIndex((book) => book.id === bookId);
+
+  if (index > -1) {
+    myLibrary.splice(index, 1);
+  }
+}
+
 function createBookInfo(type, value) {
   const p = document.createElement("p");
   const legend = document.createElement("strong");
@@ -56,6 +57,7 @@ function createBookInfo(type, value) {
 function createBookDisplay(book) {
   const card = document.createElement("div");
   card.classList.add("book");
+  card.setAttribute("data-id", book.id);
 
   const title = document.createElement("h2");
   title.textContent = book.title;
@@ -71,7 +73,19 @@ function createBookDisplay(book) {
     createBookInfo("Read", readText),
   );
 
-  card.append(title, bookDetails);
+  const cardButtons = document.createElement("div");
+
+  const removeButton = document.createElement("button");
+  removeButton.classList.add("remove-btn");
+  removeButton.textContent = "Remove Book";
+
+  const readButton = document.createElement("button");
+  readButton.classList.add("read-btn");
+  readButton.textContent = "Mark As Read";
+
+  cardButtons.append(removeButton, readButton);
+
+  card.append(title, bookDetails, cardButtons);
 
   return card;
 }
@@ -112,6 +126,16 @@ form.addEventListener("submit", (e) => {
 
   form.reset();
   dialog.close();
+});
+
+books.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-btn")) {
+    const card = e.target.closest(".book");
+
+    removeBookFromLibrary(card.dataset.id);
+
+    displayBooks();
+  }
 });
 
 displayBooks();
