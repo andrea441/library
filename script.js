@@ -29,6 +29,10 @@ function Book(title, author, pages, read) {
   };
 }
 
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+};
+
 function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read);
 
@@ -42,6 +46,14 @@ function removeBookFromLibrary(bookId) {
 
   if (index > -1) {
     myLibrary.splice(index, 1);
+  }
+}
+
+function toggleBookReadStatus(bookId) {
+  const index = myLibrary.findIndex((book) => book.id === bookId);
+
+  if (index > -1) {
+    myLibrary[index].toggleRead();
   }
 }
 
@@ -133,6 +145,12 @@ books.addEventListener("click", (e) => {
     const card = e.target.closest(".book");
 
     removeBookFromLibrary(card.dataset.id);
+
+    displayBooks();
+  } else if (e.target.classList.contains("read-btn")) {
+    const card = e.target.closest(".book");
+
+    toggleBookReadStatus(card.dataset.id);
 
     displayBooks();
   }
